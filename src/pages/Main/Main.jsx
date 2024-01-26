@@ -8,14 +8,22 @@ export const Main = () => {
   const [searchText, setSearchText] = useState('')
   const [isSearch, setIsSearch] = useState(false)
   const [resultSearchData, setResultSearchData] = useState(null)
+  const [isError, setError] = useState('')
 
   const requestData = async ({ prop, page }) => {
-    setIsSearch(true)
-    foundUsersData = await findUsers({ searchText, prop, page })
-    if (foundUsersData) {
-      setResultSearchData(foundUsersData)
+    try {
+      setIsSearch(true)
+      foundUsersData = await findUsers({ searchText, prop, page })
+      if (foundUsersData) {
+        setError('')
+        setResultSearchData(foundUsersData)
+        //   console.log(foundUsersData)
+      }
+    } catch (error) {
+      console.log(error)
+      setError(error.message)
+    } finally {
       setIsSearch(false)
-      console.log(foundUsersData)
     }
   }
 
@@ -36,6 +44,7 @@ export const Main = () => {
   const handleClick2page = () => {
     requestData({ page: 2 })
   }
+
   return (
     <>
       <S.Main>
@@ -62,23 +71,35 @@ export const Main = () => {
           <S.ResultsTitle>
             {isSearch ? 'Ищем...' : 'Результат поиска:'}
           </S.ResultsTitle>
-          <S.ResultsNavigation>
-            <S.SearchTotal>
-              Найдено:
-              {resultSearchData ? ` ${resultSearchData.total_count}` : ' 0'}
-            </S.SearchTotal>
-            <S.NavigationBar>
-              <S.NavigationItem onClick={() => handleClickPrev()}>
-                &larr; Предыдущий лист
-              </S.NavigationItem>
-              <S.NavigationItem onClick={() => handleClickNext()}>
-                Следующий лист &rarr;
-              </S.NavigationItem>
-              <S.NavigationItem onClick={() => handleClick2page()}>
-                страница 2
-              </S.NavigationItem>
-            </S.NavigationBar>
-          </S.ResultsNavigation>
+          {isError ? (
+            <S.ErrorText>{isError}</S.ErrorText>
+          ) : (
+            <>
+              <S.ResultsNavigation
+                style={{
+                  visibility: `${resultSearchData ? 'visible' : 'hidden'}`,
+                }}
+              >
+                <S.SearchTotal>
+                  {resultSearchData?.total_count
+                    ? `Найдено: ${resultSearchData.total_count}`
+                    : 'Ничего не найдено'}
+                </S.SearchTotal>
+                <S.NavigationBar>
+                  <S.NavigationItem onClick={() => handleClickPrev()}>
+                    &larr; Предыдущий лист
+                  </S.NavigationItem>
+                  <S.NavigationItem onClick={() => handleClickNext()}>
+                    Следующий лист &rarr;
+                  </S.NavigationItem>
+                  <S.NavigationItem onClick={() => handleClick2page()}>
+                    страница 2
+                  </S.NavigationItem>
+                </S.NavigationBar>
+              </S.ResultsNavigation>
+            </>
+          )}
+
           <S.ResultsSection>
             <S.ResultsBlockTitles>
               <S.ResultsTitleCol1>AVATAR</S.ResultsTitleCol1>

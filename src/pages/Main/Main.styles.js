@@ -100,3 +100,8 @@ export const NavigationItem = styled.p`
   text-align: center;
   cursor: pointer;
 `
+export const ErrorText = styled.p`
+  color: red;
+  margin-bottom: 20px;
+  font-size: 24px;
+`
