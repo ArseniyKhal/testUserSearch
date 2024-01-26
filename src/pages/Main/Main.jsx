@@ -17,7 +17,6 @@ export const Main = () => {
       setIsSearch(false)
     }
   }
-
   // формируем список найденых пользователей
   let foundUsersData = resultSearchData?.items.map((user) => {
     return <ResultItem key={user.id} dataItem={user}></ResultItem>

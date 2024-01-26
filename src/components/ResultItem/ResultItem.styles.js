@@ -20,6 +20,7 @@ export const ResultsItemCol2 = styled(ResultsColumns)`
 `
 export const ResultsItemCol3 = styled(ResultsColumns)`
   ${Col3}
+  cursor: pointer;
 `
 export const ItemPicture = styled.div`
   width: 46px;

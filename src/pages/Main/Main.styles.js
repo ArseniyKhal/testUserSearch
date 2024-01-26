@@ -87,10 +87,10 @@ export const Col1 = css`
   width: 65px;
 `
 export const Col2 = css`
-  width: 200px;
+  width: 300px;
 `
 export const Col3 = css`
-  width: 400px;
+  width: 600px;
 `
 export const ResultsBlockTitles = styled.div`
   display: flex;
