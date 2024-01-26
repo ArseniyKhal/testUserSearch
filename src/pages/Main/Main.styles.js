@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Button } from '../../App.styles'
 
 export const Main = styled.main`
@@ -17,12 +17,6 @@ export const SearchSection = styled.div`
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  @media (width <= 800px) {
-    width: calc(100vw - 110px);
-    margin-top: 0px;
-    height: 55px;
-    margin: 0 57px;
-  }
 `
 
 export const SearchText = styled.input`
@@ -59,21 +53,9 @@ export const SearchText = styled.input`
     line-height: 150%;
     color: var(--text-color-white);
   }
-  @media (width <= 800px) {
-    height: 32px;
-    border-radius: 32px;
-    background: #fff;
-    border: none;
-    transform: translateY(-2px);
-  }
 `
-export const EnterButton = styled(Button)`
-  width: 158px;
-  @media (width <= 800px) {
-    background-color: red;
-    display: none;
-  }
-`
+export const EnterButton = styled(Button)``
+
 export const ResultsSection = styled.div`
   border: 2px solid #fff;
   border-radius: 6px;
@@ -83,36 +65,23 @@ export const ResultsTitle = styled.h3`
   font-size: 1.8em;
   margin: 20px 0;
 `
-export const Col1 = css`
-  width: 65px;
-`
-export const Col2 = css`
-  width: 300px;
-`
-export const Col3 = css`
-  width: 600px;
-`
 export const ResultsBlockTitles = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
   align-items: center;
   margin-bottom: 20px;
   gap: 8px;
 `
 export const ResultsTitleColumns = styled.div`
+  overflow: hidden;
   display: flex;
   justify-content: center;
   text-transform: uppercase;
   border-bottom: 2px solid #fff;
 `
-export const ResultsTitleCol1 = styled(ResultsTitleColumns)`
-  ${Col1}
-`
-export const ResultsTitleCol2 = styled(ResultsTitleColumns)`
-  ${Col2}
-`
-export const ResultsTitleCol3 = styled(ResultsTitleColumns)`
-  ${Col3}
-`
+export const ResultsTitleCol1 = styled(ResultsTitleColumns)``
+export const ResultsTitleCol2 = styled(ResultsTitleColumns)``
+export const ResultsTitleCol3 = styled(ResultsTitleColumns)``
 export const ResultsList = styled.ul``
 
 export const ResultsNavigation = styled.div`

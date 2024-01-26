@@ -14,7 +14,7 @@
 }
 
 .App-header {
-	background-color: #282c34;
+	background-color: #212327;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -26,6 +26,11 @@
 	text-align: center;
 	margin-bottom: 20px;
 	justify-content: space-between;
+	transition: all 0.3s ease;
+	grid-template-columns: repeat(3 1fr);
+	overflow: hidden;
+	text-decoration: underline;
+	font-size: 32px;
 }
 
 .App-link {

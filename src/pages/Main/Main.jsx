@@ -1,5 +1,5 @@
-import { Container } from '../../App.styles'
 import { useState } from 'react'
+import { Container } from '../../App.styles'
 import { findUsers } from '../../service/api'
 import { ResultItem } from '../../components/ResultItem/ResultItem'
 import * as S from './Main.styles'
@@ -9,13 +9,18 @@ export const Main = () => {
   const [isSearch, setIsSearch] = useState(false)
   const [resultSearchData, setResultSearchData] = useState(null)
 
-  const handleEnter = async (e) => {
+  const requestData = async ({ prop, page }) => {
     setIsSearch(true)
-    foundUsersData = await findUsers(searchText)
+    foundUsersData = await findUsers({ searchText, prop, page })
     if (foundUsersData) {
       setResultSearchData(foundUsersData)
       setIsSearch(false)
+      console.log(foundUsersData)
     }
+  }
+
+  const handleEnter = () => {
+    requestData({ prop: '', page: '' })
   }
   // формируем список найденых пользователей
   let foundUsersData = resultSearchData?.items.map((user) => {
@@ -23,10 +28,13 @@ export const Main = () => {
   })
 
   const handleClickPrev = () => {
-    console.log('предыдущий')
+    requestData({ prop: 'prev', page: '' })
   }
   const handleClickNext = () => {
-    console.log('следующий')
+    requestData({ prop: 'next', page: '' })
+  }
+  const handleClick2page = () => {
+    requestData({ page: 2 })
   }
   return (
     <>
@@ -43,6 +51,7 @@ export const Main = () => {
               }}
             />
             <S.EnterButton
+              disabled={!searchText}
               onClick={() => {
                 handleEnter()
               }}
@@ -65,13 +74,16 @@ export const Main = () => {
               <S.NavigationItem onClick={() => handleClickNext()}>
                 Следующий лист &rarr;
               </S.NavigationItem>
+              <S.NavigationItem onClick={() => handleClick2page()}>
+                страница 2
+              </S.NavigationItem>
             </S.NavigationBar>
           </S.ResultsNavigation>
           <S.ResultsSection>
             <S.ResultsBlockTitles>
               <S.ResultsTitleCol1>AVATAR</S.ResultsTitleCol1>
               <S.ResultsTitleCol2>LOGIN</S.ResultsTitleCol2>
-              <S.ResultsTitleCol3>URL</S.ResultsTitleCol3>
+              <S.ResultsTitleCol3>GitHub pages</S.ResultsTitleCol3>
             </S.ResultsBlockTitles>
             <S.ResultsList>{foundUsersData}</S.ResultsList>
           </S.ResultsSection>

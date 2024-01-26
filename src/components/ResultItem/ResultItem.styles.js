@@ -1,30 +1,39 @@
 import styled from 'styled-components'
-import { Col1, Col2, Col3 } from '../../pages/Main/Main.styles'
 
 export const ResultsList = styled.ul``
 export const ResultsItem = styled.li`
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
   align-items: center;
   margin-bottom: 10px;
-  gap: 8px;
+  height: 34px;
+  gap: 20px;
+  wrap: wrap;
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    background-color: #212327;
+  }
 `
 export const ResultsColumns = styled.div`
   align-items: center;
+  overflow: hidden;
   gap: 8px;
 `
 export const ResultsItemCol1 = styled(ResultsColumns)`
-  ${Col1}
+  height: 100%;
+  transition: all 0.3s ease;
 `
 export const ResultsItemCol2 = styled(ResultsColumns)`
-  ${Col2}
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 15px;
 `
-export const ResultsItemCol3 = styled(ResultsColumns)`
-  ${Col3}
-  cursor: pointer;
-`
+export const ResultsItemCol3 = styled(ResultsColumns)``
 export const ItemPicture = styled.div`
-  width: 46px;
-  height: 46px;
+  height: 100%;
+  width: 100%;
   background-color: var(--color-bg-wrap);
   display: -webkit-box;
   display: flex;
@@ -40,5 +49,11 @@ export const ItemPicture = styled.div`
 export const ItemImg = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+`
+export const ItemLink = styled.a`
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `
