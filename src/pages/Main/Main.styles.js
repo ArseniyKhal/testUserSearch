@@ -75,8 +75,6 @@ export const EnterButton = styled(Button)`
   }
 `
 export const ResultsSection = styled.div`
-  //   height: 100%;
-  //   background-color: red;
   border: 2px solid #fff;
   border-radius: 6px;
   padding: 20px;
@@ -92,7 +90,7 @@ export const Col2 = css`
   width: 200px;
 `
 export const Col3 = css`
-  width: 447px;
+  width: 400px;
 `
 export const ResultsBlockTitles = styled.div`
   display: flex;

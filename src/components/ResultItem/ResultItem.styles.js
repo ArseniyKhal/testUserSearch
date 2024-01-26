@@ -5,10 +5,10 @@ export const ResultsList = styled.ul``
 export const ResultsItem = styled.li`
   display: flex;
   align-items: center;
-  //   margin-bottom: 20px;
+  margin-bottom: 10px;
   gap: 8px;
 `
-export const ResultsColumns = styled.li`
+export const ResultsColumns = styled.div`
   align-items: center;
   gap: 8px;
 `
@@ -26,7 +26,6 @@ export const ItemPicture = styled.div`
   height: 46px;
   background-color: var(--color-bg-wrap);
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
