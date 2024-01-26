@@ -114,3 +114,20 @@ export const ResultsTitleCol3 = styled(ResultsTitleColumns)`
   ${Col3}
 `
 export const ResultsList = styled.ul``
+
+export const ResultsNavigation = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  gap: 8px;
+`
+export const SearchTotal = styled.p``
+export const NavigationBar = styled.nav`
+  display: flex;
+  gap: 20px;
+`
+export const NavigationItem = styled.p`
+  text-align: center;
+  cursor: pointer;
+`

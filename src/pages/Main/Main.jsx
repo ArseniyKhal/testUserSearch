@@ -11,18 +11,24 @@ export const Main = () => {
 
   const handleEnter = async (e) => {
     setIsSearch(true)
-    const foundUsersData = await findUsers(searchText)
-    console.log(foundUsersData)
+    foundUsersData = await findUsers(searchText)
     if (foundUsersData) {
-      setResultSearchData(
-        foundUsersData.items.map((user) => {
-          return <ResultItem key={user.id} dataItem={user}></ResultItem>
-        }),
-      )
+      setResultSearchData(foundUsersData)
       setIsSearch(false)
     }
   }
 
+  // формируем список найденых пользователей
+  let foundUsersData = resultSearchData?.items.map((user) => {
+    return <ResultItem key={user.id} dataItem={user}></ResultItem>
+  })
+
+  const handleClickPrev = () => {
+    console.log('предыдущий')
+  }
+  const handleClickNext = () => {
+    console.log('следующий')
+  }
   return (
     <>
       <S.Main>
@@ -48,17 +54,27 @@ export const Main = () => {
           <S.ResultsTitle>
             {isSearch ? 'Ищем...' : 'Результат поиска:'}
           </S.ResultsTitle>
-          <p>
-            Найдено:
-            {resultSearchData ? ` ${resultSearchData.length}` : ' 0'}
-          </p>
+          <S.ResultsNavigation>
+            <S.SearchTotal>
+              Найдено:
+              {resultSearchData ? ` ${resultSearchData.total_count}` : ' 0'}
+            </S.SearchTotal>
+            <S.NavigationBar>
+              <S.NavigationItem onClick={() => handleClickPrev()}>
+                &larr; Предыдущий лист
+              </S.NavigationItem>
+              <S.NavigationItem onClick={() => handleClickNext()}>
+                Следующий лист &rarr;
+              </S.NavigationItem>
+            </S.NavigationBar>
+          </S.ResultsNavigation>
           <S.ResultsSection>
             <S.ResultsBlockTitles>
               <S.ResultsTitleCol1>AVATAR</S.ResultsTitleCol1>
               <S.ResultsTitleCol2>LOGIN</S.ResultsTitleCol2>
               <S.ResultsTitleCol3>URL</S.ResultsTitleCol3>
             </S.ResultsBlockTitles>
-            <S.ResultsList>{resultSearchData}</S.ResultsList>
+            <S.ResultsList>{foundUsersData}</S.ResultsList>
           </S.ResultsSection>
         </Container>
       </S.Main>
