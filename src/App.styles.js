@@ -1,4 +1,4 @@
-import { styled, createGlobalStyle, keyframes } from 'styled-components'
+import { styled, createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -142,68 +142,5 @@ export const Button = styled.button`
   @media (width <= 600px) {
     height: 46px;
     font-size: 14px;
-  }
-`
-
-const rotate = keyframes`
-	0% { transform: rotate(0deg) scale(0.8) }
-	50% { transform: rotate(360deg) scale(1.2) }
-	100% { transform: rotate(720deg) scale(0.8) }
- `
-const ball1 = keyframes`
- 	0% {
-	  box-shadow: 30px 0 0 #bcec30;
-	}
-	50% {
-	  box-shadow: 0 0 0 #bcec30;
-	  margin-bottom: 0;
-	  transform: translate(15px, 15px);
-	}
-	100% {
-	  box-shadow: 30px 0 0 #bcec30;
-	  margin-bottom: 10px;
-	}
- `
-const ball2 = keyframes`
-	0% {
-	  box-shadow: 30px 0 0 #00c1ff;
-	}
-	50% {
-	  box-shadow: 0 0 0 #00c1ff;
-	  margin-top: -20px;
-	  transform: translate(15px, 15px);
-	}
-	100% {
-	  box-shadow: 30px 0 0 #00c1ff;
-	  margin-top: 0;
-	}
- `
-
-export const Loader = styled.div`
-  position: relative;
-  top: 20vh;
-  left: 50%;
-  animation: ${rotate} 3s infinite;
-  transform: translate(-50%, -50%);
-  height: 50px;
-  width: 50px;
-  &::before,
-  &::after {
-    border-radius: 50%;
-    content: '';
-    display: block;
-    height: 20px;
-    width: 20px;
-  }
-  &::before {
-    animation: ${ball1} 1s infinite;
-    background-color: #00c1ff;
-    box-shadow: 30px 0 0 #bcec30;
-    margin-bottom: 10px;
-  }
-  &::after {
-    animation: ${ball2} 1s infinite;
-    background-color: #bcec30;
-    box-shadow: 30px 0 0 #00c1ff;
   }
 `

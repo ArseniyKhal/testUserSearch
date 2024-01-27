@@ -8,12 +8,14 @@ export const Main = () => {
   const [searchText, setSearchText] = useState('')
   const [isSearch, setIsSearch] = useState(false)
   const [resultSearchData, setResultSearchData] = useState(null)
+  const [isVisibleSort, setVisibleSort] = useState(false)
+  const [sort, setSort] = useState('')
   const [isError, setError] = useState('')
 
-  const requestData = async ({ prop, page }) => {
+  const requestData = async ({ prop, page, sort }) => {
     try {
       setIsSearch(true)
-      foundUsersData = await findUsers({ searchText, prop, page })
+      foundUsersData = await findUsers({ searchText, prop, page, sort })
       if (foundUsersData) {
         setError('')
         setResultSearchData(foundUsersData)
@@ -28,7 +30,8 @@ export const Main = () => {
   }
 
   const handleEnter = () => {
-    requestData({ prop: '', page: '' })
+    setSort('')
+    requestData({ prop: '', page: '', sort: '' })
   }
   // формируем список найденых пользователей
   let foundUsersData = resultSearchData?.items.map((user) => {
@@ -36,15 +39,26 @@ export const Main = () => {
   })
 
   const handleClickPrev = () => {
-    requestData({ prop: 'prev', page: '' })
+    requestData({ prop: 'prev', page: '', sort: '' })
   }
   const handleClickNext = () => {
-    requestData({ prop: 'next', page: '' })
+    requestData({ prop: 'next', page: '', sort: '' })
   }
   const handleClick2page = () => {
     requestData({ page: 2 })
   }
-
+  const handleVisibleSort = (event) => {
+    event.stopPropagation()
+    setVisibleSort(!isVisibleSort)
+  }
+  const handleSortMoreRepo = () => {
+    setSort('по уменьшению репозиториев')
+    requestData({ prop: '', page: '', sort: 'desc' })
+  }
+  const handleSortLessRepo = () => {
+    setSort('по увеличению репозиториев')
+    requestData({ prop: '', page: '', sort: 'asc' })
+  }
   return (
     <>
       <S.Main>
@@ -85,6 +99,33 @@ export const Main = () => {
                     ? `Найдено: ${resultSearchData.total_count}`
                     : 'Ничего не найдено'}
                 </S.SearchTotal>
+                <S.SortBox
+                  onClick={(e) => {
+                    handleVisibleSort(e)
+                  }}
+                >
+                  <p>Сортировка: {sort}</p>
+                  <S.SortMenu
+                    style={{
+                      transform: `${isVisibleSort ? 'scale(1)' : 'scale(0)'}`,
+                    }}
+                  >
+                    <S.SortItem
+                      onClick={() => {
+                        handleSortMoreRepo()
+                      }}
+                    >
+                      Больше репозиториев
+                    </S.SortItem>
+                    <S.SortItem
+                      onClick={() => {
+                        handleSortLessRepo()
+                      }}
+                    >
+                      Меньше репозиториев
+                    </S.SortItem>
+                  </S.SortMenu>
+                </S.SortBox>
                 <S.NavigationBar>
                   <S.NavigationItem onClick={() => handleClickPrev()}>
                     &larr; Предыдущий лист
