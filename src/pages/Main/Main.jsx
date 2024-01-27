@@ -15,11 +15,11 @@ export const Main = () => {
   const requestData = async ({ prop, page, sort }) => {
     try {
       setIsSearch(true)
-      foundUsersData = await findUsers({ searchText, prop, page, sort })
+      const foundUsersData = await findUsers({ searchText, prop, page, sort })
       if (foundUsersData) {
         setError('')
         setResultSearchData(foundUsersData)
-        //   console.log(foundUsersData)
+        console.log(foundUsersData)
       }
     } catch (error) {
       console.log(error)
@@ -34,7 +34,7 @@ export const Main = () => {
     requestData({ prop: '', page: '', sort })
   }
   // формируем список найденых пользователей
-  let foundUsersData = resultSearchData?.items.map((user) => {
+  let listMapUsers = resultSearchData?.items.map((user) => {
     return <ResultItem key={user.id} dataItem={user}></ResultItem>
   })
 
@@ -155,7 +155,7 @@ export const Main = () => {
               <S.ResultsTitleCol2>LOGIN</S.ResultsTitleCol2>
               <S.ResultsTitleCol3>GitHub pages</S.ResultsTitleCol3>
             </S.ResultsBlockTitles>
-            <S.ResultsList>{foundUsersData}</S.ResultsList>
+            <S.ResultsList>{listMapUsers}</S.ResultsList>
           </S.ResultsSection>
         </Container>
       </S.Main>

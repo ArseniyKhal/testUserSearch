@@ -1,11 +1,39 @@
 import { useState } from 'react'
+import { findFollowers } from '../../service/api'
 import * as S from './ResultItem.styles'
 
 export const ResultItem = ({ dataItem }) => {
   const [isVisibleUser, setIsVisibleUser] = useState(false)
+  const [followers, setFollowers] = useState(null)
+  const login = dataItem.login
+
+  let foundUsersData
+  const requestData = async () => {
+    try {
+      foundUsersData = await findFollowers(login)
+      if (foundUsersData) {
+        setFollowers(foundUsersData)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+    }
+  }
 
   const handleClickUser = () => {
     setIsVisibleUser(!isVisibleUser)
+    if (!isVisibleUser) {
+      requestData()
+    }
+  }
+
+  let followersSum = followers?.followersData.length
+  if (followersSum >= 100) {
+    followersSum = 'more than 100'
+  }
+  let followingSum = followers?.followingData.length
+  if (followingSum >= 100) {
+    followingSum = 'more than 100'
   }
   return (
     <S.ResultsItem
@@ -32,15 +60,19 @@ export const ResultItem = ({ dataItem }) => {
       ) : (
         <>
           <S.ResultsItemCol2 style={{ fontSize: '22px' }}>
-            <div>{dataItem.login}</div>
-            <div>
-              GitHub pages:{' '}
+            <p>Login: {dataItem.login}</p>
+            <p>
+              GitHub pages:
               <S.ItemLink href={dataItem.html_url}>
                 {dataItem.html_url}
               </S.ItemLink>
-            </div>
-            <div>Followers: 5</div>
-            <div>Following: 10</div>
+            </p>
+            {followers && (
+              <>
+                <p>Followers: {followersSum}</p>
+                <p>Following: {followingSum}</p>
+              </>
+            )}
           </S.ResultsItemCol2>
         </>
       )}
