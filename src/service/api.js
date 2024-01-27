@@ -8,8 +8,12 @@ export async function findUsers({ searchText, prop, page, sort }) {
   const response = await fetch(bh, {
     method: 'GET',
   })
-  if (!response.ok) {
-    throw new Error(response.detail ?? 'ошибка сервера')
+  if (response.status !== 200) {
+    if (response.status === 403) {
+      throw new Error('Превышен лимит запросов. Повторите запрос позже')
+    } else {
+      throw new Error(response.detail ?? 'ошибка сервера')
+    }
   }
   return response.json()
 }

@@ -31,7 +31,7 @@ export const Main = () => {
 
   const handleEnter = () => {
     setSort('')
-    requestData({ prop: '', page: '', sort: '' })
+    requestData({ prop: '', page: '', sort })
   }
   // формируем список найденых пользователей
   let foundUsersData = resultSearchData?.items.map((user) => {
@@ -39,10 +39,10 @@ export const Main = () => {
   })
 
   const handleClickPrev = () => {
-    requestData({ prop: 'prev', page: '', sort: '' })
+    requestData({ prop: 'prev', page: '', sort })
   }
   const handleClickNext = () => {
-    requestData({ prop: 'next', page: '', sort: '' })
+    requestData({ prop: 'next', page: '', sort })
   }
   const handleClick2page = () => {
     requestData({ page: 2 })
@@ -52,12 +52,20 @@ export const Main = () => {
     setVisibleSort(!isVisibleSort)
   }
   const handleSortMoreRepo = () => {
-    setSort('по уменьшению репозиториев')
+    setSort('desc')
     requestData({ prop: '', page: '', sort: 'desc' })
   }
   const handleSortLessRepo = () => {
-    setSort('по увеличению репозиториев')
+    setSort('asc')
     requestData({ prop: '', page: '', sort: 'asc' })
+  }
+  let sortText = ''
+  if (sort === 'desc') {
+    sortText = 'по убыванию репозиториев'
+  } else if (sort === 'asc') {
+    sortText = 'по возрастанию репозиториев'
+  } else {
+    sortText = ''
   }
   return (
     <>
@@ -104,7 +112,7 @@ export const Main = () => {
                     handleVisibleSort(e)
                   }}
                 >
-                  <p>Сортировка: {sort}</p>
+                  <p>Сортировка: {sortText}</p>
                   <S.SortMenu
                     style={{
                       transform: `${isVisibleSort ? 'scale(1)' : 'scale(0)'}`,
