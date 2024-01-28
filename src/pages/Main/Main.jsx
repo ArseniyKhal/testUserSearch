@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Container } from '../../App.styles'
 import { findUsers } from '../../service/api'
 import { ResultItem } from '../../components/ResultItem/ResultItem'
+import { Pagination } from '../../components/Pagination/Pagination'
 import * as S from './Main.styles'
 
 export const Main = () => {
@@ -11,15 +12,15 @@ export const Main = () => {
   const [isVisibleSort, setVisibleSort] = useState(false)
   const [sort, setSort] = useState('')
   const [isError, setError] = useState('')
+  const [page, setPage] = useState(1)
 
-  const requestData = async ({ prop, page, sort }) => {
+  const requestData = async ({ sort, page }) => {
     try {
       setIsSearch(true)
-      const foundUsersData = await findUsers({ searchText, prop, page, sort })
+      const foundUsersData = await findUsers({ searchText, page, sort })
       if (foundUsersData) {
         setError('')
         setResultSearchData(foundUsersData)
-        console.log(foundUsersData)
       }
     } catch (error) {
       console.log(error)
@@ -31,33 +32,27 @@ export const Main = () => {
 
   const handleEnter = () => {
     setSort('')
-    requestData({ prop: '', page: '', sort })
+    setPage(1)
+    requestData({ page: '', sort })
   }
   // формируем список найденых пользователей
   let listMapUsers = resultSearchData?.items.map((user) => {
     return <ResultItem key={user.id} dataItem={user}></ResultItem>
   })
 
-  const handleClickPrev = () => {
-    requestData({ prop: 'prev', page: '', sort })
-  }
-  const handleClickNext = () => {
-    requestData({ prop: 'next', page: '', sort })
-  }
-  const handleClick2page = () => {
-    requestData({ page: 2 })
-  }
-  const handleVisibleSort = (event) => {
-    event.stopPropagation()
+  // выбор сортировки по количеству репозиториев
+  const handleVisibleSort = () => {
     setVisibleSort(!isVisibleSort)
   }
   const handleSortMoreRepo = () => {
     setSort('desc')
-    requestData({ prop: '', page: '', sort: 'desc' })
+    setPage(1)
+    requestData({ page: '', sort: 'desc' })
   }
   const handleSortLessRepo = () => {
     setSort('asc')
-    requestData({ prop: '', page: '', sort: 'asc' })
+    setPage(1)
+    requestData({ page: '', sort: 'asc' })
   }
   let sortText = ''
   if (sort === 'desc') {
@@ -67,6 +62,7 @@ export const Main = () => {
   } else {
     sortText = ''
   }
+
   return (
     <>
       <S.Main>
@@ -134,17 +130,13 @@ export const Main = () => {
                     </S.SortItem>
                   </S.SortMenu>
                 </S.SortBox>
-                <S.NavigationBar>
-                  <S.NavigationItem onClick={() => handleClickPrev()}>
-                    &larr; Предыдущий лист
-                  </S.NavigationItem>
-                  <S.NavigationItem onClick={() => handleClickNext()}>
-                    Следующий лист &rarr;
-                  </S.NavigationItem>
-                  <S.NavigationItem onClick={() => handleClick2page()}>
-                    страница 2
-                  </S.NavigationItem>
-                </S.NavigationBar>
+                <Pagination
+                  total_count={resultSearchData?.total_count}
+                  page={page}
+                  setPage={setPage}
+                  requestData={requestData}
+                  sort={sort}
+                ></Pagination>
               </S.ResultsNavigation>
             </>
           )}

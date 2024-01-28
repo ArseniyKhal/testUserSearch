@@ -92,14 +92,7 @@ export const ResultsNavigation = styled.div`
   gap: 8px;
 `
 export const SearchTotal = styled.p``
-export const NavigationBar = styled.nav`
-  display: flex;
-  gap: 20px;
-`
-export const NavigationItem = styled.p`
-  text-align: center;
-  cursor: pointer;
-`
+
 export const ErrorText = styled.p`
   color: red;
   margin-bottom: 20px;
