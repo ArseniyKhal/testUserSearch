@@ -5,7 +5,7 @@ export const HeaderSection = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: coral;
+  background-color: var(--text-error);
   text-align: center;
 `
 export const HeaderTitle = styled.h1`

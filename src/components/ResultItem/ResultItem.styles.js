@@ -12,7 +12,10 @@ export const ResultsItem = styled.li`
   transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
-    background-color: #212327;
+    background-color: var(--item-hover);
+  }
+  @media (width <= 600px) {
+    grid-template-columns: 100px 1fr;
   }
 `
 export const ResultsColumns = styled.div`
@@ -29,12 +32,18 @@ export const ResultsItemCol2 = styled(ResultsColumns)`
   flex-direction: column;
   align-items: start;
   gap: 15px;
+  @media (width <= 600px) {
+    align-items: center;
+  }
 `
-export const ResultsItemCol3 = styled(ResultsColumns)``
+export const ResultsItemCol3 = styled(ResultsColumns)`
+  @media (width <= 600px) {
+    display: none;
+  }
+`
 export const ItemPicture = styled.div`
   height: 100%;
   width: 100%;
-  background-color: var(--color-bg-wrap);
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;

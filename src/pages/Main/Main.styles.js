@@ -10,6 +10,9 @@ export const Main = styled.main`
 export const MainTitle = styled.h2`
   font-size: 2.5em;
   margin: 20px 0;
+  @media (width <= 700px) {
+    font-size: 2em;
+  }
 `
 
 export const SearchSection = styled.div`
@@ -71,6 +74,9 @@ export const ResultsBlockTitles = styled.div`
   align-items: center;
   margin-bottom: 20px;
   gap: 8px;
+  @media (width <= 600px) {
+    grid-template-columns: 100px 1fr;
+  }
 `
 export const ResultsTitleColumns = styled.div`
   overflow: hidden;
@@ -81,7 +87,11 @@ export const ResultsTitleColumns = styled.div`
 `
 export const ResultsTitleCol1 = styled(ResultsTitleColumns)``
 export const ResultsTitleCol2 = styled(ResultsTitleColumns)``
-export const ResultsTitleCol3 = styled(ResultsTitleColumns)``
+export const ResultsTitleCol3 = styled(ResultsTitleColumns)`
+  @media (width <= 600px) {
+    display: none;
+  }
+`
 export const ResultsList = styled.ul``
 
 export const ResultsNavigation = styled.div`
@@ -90,11 +100,14 @@ export const ResultsNavigation = styled.div`
   margin-bottom: 20px;
   justify-content: space-between;
   gap: 8px;
+  @media (width <= 700px) {
+    flex-direction: column;
+  }
 `
 export const SearchTotal = styled.p``
 
 export const ErrorText = styled.p`
-  color: red;
+  color: var(--text-error);
   margin-bottom: 20px;
   font-size: 24px;
 `
@@ -103,7 +116,7 @@ export const SortBox = styled.div`
   position: relative;
 `
 export const SortMenu = styled.ul`
-  background-color: var(--text-color-grey);
+  background-color: var(--menu-background);
   width: 200px;
   position: absolute;
   margin-top: 6px;

@@ -95,7 +95,7 @@ input:-webkit-autofill:active{
 
 html, body {
 	font-family: 'Roboto', sans-serif;
-	color: #fff;
+	color: var(--text-color-white);
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
@@ -106,7 +106,7 @@ html, body {
 `
 
 export const Wrapper = styled.div`
-  background-color: #282c34;
+  background-color: var(--main-background);
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
@@ -119,7 +119,7 @@ export const Container = styled.div`
   margin: 0 auto;
 `
 export const Button = styled.button`
-  color: #fff;
+  color: var(--text-color-whit);
   height: 50px;
   background: var(--main-topic);
   border-radius: 6px;

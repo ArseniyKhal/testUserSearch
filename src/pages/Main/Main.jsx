@@ -94,54 +94,53 @@ export const Main = () => {
             {isSearch ? 'Ищем...' : `Результат поиска:`}
           </S.ResultsTitle>
           {isError && <S.ErrorText>{isError}</S.ErrorText>}
-          <>
-            <S.ResultsNavigation
-              style={{
-                visibility: `${resultSearchData ? 'visible' : 'hidden'}`,
+
+          <S.ResultsNavigation
+            style={{
+              visibility: `${resultSearchData ? 'visible' : 'hidden'}`,
+            }}
+          >
+            <S.SearchTotal>
+              {resultSearchData?.total_count
+                ? `Найдено: ${resultSearchData.total_count}`
+                : 'Ничего не найдено'}
+            </S.SearchTotal>
+            <S.SortBox
+              onClick={(e) => {
+                handleVisibleSort(e)
               }}
             >
-              <S.SearchTotal>
-                {resultSearchData?.total_count
-                  ? `Найдено: ${resultSearchData.total_count}`
-                  : 'Ничего не найдено'}
-              </S.SearchTotal>
-              <S.SortBox
-                onClick={(e) => {
-                  handleVisibleSort(e)
+              <p>Сортировка: {sortText}</p>
+              <S.SortMenu
+                style={{
+                  transform: `${isVisibleSort ? 'scale(1)' : 'scale(0)'}`,
                 }}
               >
-                <p>Сортировка: {sortText}</p>
-                <S.SortMenu
-                  style={{
-                    transform: `${isVisibleSort ? 'scale(1)' : 'scale(0)'}`,
+                <S.SortItem
+                  onClick={() => {
+                    handleSortMoreRepo()
                   }}
                 >
-                  <S.SortItem
-                    onClick={() => {
-                      handleSortMoreRepo()
-                    }}
-                  >
-                    Больше репозиториев
-                  </S.SortItem>
-                  <S.SortItem
-                    onClick={() => {
-                      handleSortLessRepo()
-                    }}
-                  >
-                    Меньше репозиториев
-                  </S.SortItem>
-                </S.SortMenu>
-              </S.SortBox>
-              <Pagination
-                total_count={resultSearchData?.total_count}
-                page={page}
-                setPage={setPage}
-                requestData={requestData}
-                sortBy={sortBy}
-                links={links}
-              ></Pagination>
-            </S.ResultsNavigation>
-          </>
+                  Больше репозиториев
+                </S.SortItem>
+                <S.SortItem
+                  onClick={() => {
+                    handleSortLessRepo()
+                  }}
+                >
+                  Меньше репозиториев
+                </S.SortItem>
+              </S.SortMenu>
+            </S.SortBox>
+            <Pagination
+              total_count={resultSearchData?.total_count}
+              page={page}
+              setPage={setPage}
+              requestData={requestData}
+              sortBy={sortBy}
+              links={links}
+            ></Pagination>
+          </S.ResultsNavigation>
 
           <S.ResultsSection>
             <S.ResultsBlockTitles>

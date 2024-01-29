@@ -1,5 +1,6 @@
 import { Header } from './components/Header/Header'
 import { Main } from './pages/Main/Main'
+import { Footer } from './components/Footer/Footer'
 import * as S from './App.styles'
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
       <S.Wrapper>
         <Header></Header>
         <Main></Main>
-        <footer>Спасибо за просмотр</footer>
+        <Footer></Footer>
       </S.Wrapper>
     </>
   )
