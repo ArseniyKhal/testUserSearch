@@ -61,7 +61,7 @@ export const ResultsSection = styled.div`
   border-radius: 6px;
   padding: 20px;
 `
-export const ResultsTitle = styled.h3`
+export const ResultsTitle = styled.p`
   font-size: 1.8em;
   margin: 20px 0;
 `
