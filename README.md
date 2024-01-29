@@ -26,4 +26,4 @@ Technology stack
 
 Project structure:
 
-    The main page has an input field for user search and a search result field. Total number of matches. Buttons for moving through pages: next, previous, first, last. A button for sorting by the number of repositories the user has.
+The main page has an input field for user search and a search result field. Total number of matches. Buttons for moving through pages: next, previous, first, last. A button for sorting by the number of repositories the user has.

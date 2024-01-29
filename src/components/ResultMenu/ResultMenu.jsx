@@ -48,8 +48,8 @@ export const ResultMenu = ({
           : 'Ничего не найдено'}
       </S.SearchTotal>
       <S.SortBox
-        onClick={(e) => {
-          handleVisibleSort(e)
+        onClick={() => {
+          handleVisibleSort()
         }}
       >
         <p>Сортировка: {sortText}</p>

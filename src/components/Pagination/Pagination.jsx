@@ -1,20 +1,11 @@
 import { pageLimit } from '../../service/api'
 import * as S from './Pagination.styles'
 
-// type Props = {
-//   total_count: number
-//   page: number
-//   setPage: number
-//   requestData: object
-//   sortBy: string
-// }
-
 export const Pagination = ({
   total_count,
   page,
   setPage,
   requestData,
-  sortBy,
   links,
 }) => {
   const totalPage = Math.ceil(total_count / pageLimit)

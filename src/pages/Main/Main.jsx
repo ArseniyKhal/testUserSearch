@@ -14,7 +14,7 @@ export const Main = () => {
   const [page, setPage] = useState(1)
   const [links, setLinks] = useState(null)
 
-  const requestData = async ({ sortBy, url }) => {
+  const requestData = async ({ searchText, sortBy, url }) => {
     try {
       setIsSearch(true)
       const response = await findUsers({ searchText, sortBy, url })
@@ -26,17 +26,21 @@ export const Main = () => {
         setResultSearchData(foundUsersData)
       }
     } catch (error) {
-      console.log(error)
-      setError(error.message)
+      if (error instanceof Error) {
+        console.log(error.message)
+        setError(error.message)
+        console.log(error)
+      }
     } finally {
       setIsSearch(false)
     }
   }
 
   const handleEnterSearch = () => {
+    const url = ''
     setSortBy('')
     setPage(1)
-    requestData({ sortBy })
+    requestData({ searchText, sortBy, url })
   }
   // формируем список найденых пользователей
   let listMapUsers = resultSearchData?.items.map((user) => {
