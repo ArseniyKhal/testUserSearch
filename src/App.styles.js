@@ -20,26 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 		url("/fonts/Roboto-Regular.woff") format("woff"),
 		url("/fonts/Roboto-Regular.ttf") format("ttf");
 }
-@font-face {
-	font-family: "Roboto";
-	font-weight: 500;
-	font-style: normal;
-	font-display: swap;
-	src: local("Roboto-Medium"), local("Roboto-Medium"),
-		url("/fonts/Roboto-Medium.woff2") format("woff2"),
-		url("/fonts/Roboto-Medium.woff") format("woff"),
-		url("/fonts/Roboto-Medium.ttf") format("ttf");
-}
-@font-face {
-	font-family: "Roboto";
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-	src: local("Roboto-Bold"), local("Roboto-Bold"),
-		url("/fonts/Roboto-Bold.woff2") format("woff2"),
-		url("/fonts/Roboto-Bold.woff") format("woff"),
-		url("/fonts/Roboto-Bold.ttf") format("ttf");
-}
 
 * {
 	margin: 0;
@@ -121,7 +101,7 @@ export const Container = styled.div`
 export const Button = styled.button`
   color: var(--text-color-whit);
   height: 50px;
-  background: var(--main-topic);
+  background: var(--btn-BG);
   border-radius: 6px;
   padding: 0 24px;
   cursor: pointer;

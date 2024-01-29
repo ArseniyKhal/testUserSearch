@@ -6,7 +6,6 @@ export async function findUsers({ searchText, sortBy, url }) {
   if (!url) {
     url = `${baseHost}search/users?q=${searchText}&per_page=${pageLimit}${sortBy && `&sort=repositories&order=${sortBy}`}`
   }
-  //   console.log(url)
   const response = await fetch(url)
   if (response.status !== 200) {
     if (response.status === 403) {

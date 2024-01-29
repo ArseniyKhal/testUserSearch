@@ -1,4 +1,3 @@
-import { Container } from '../../App.styles'
 import * as S from './Footer.styles'
 
 export const Footer = () => {
