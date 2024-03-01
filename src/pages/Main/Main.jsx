@@ -42,10 +42,13 @@ export const Main = () => {
     setPage(1)
     requestData({ searchText, sortBy, url })
   }
+
   // формируем список найденых пользователей
   let listMapUsers = resultSearchData?.items.map((user) => {
     return <ResultItem key={user.id} dataItem={user}></ResultItem>
   })
+
+  // тестовая строка
 
   return (
     <>
